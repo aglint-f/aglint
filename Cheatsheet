@@ -1,0 +1,810 @@
+import itertools
+nums=list(map(int,input().split()))
+2,3,4
+print(list(itertools.combinations(nums,2)))
+（2，3）(2,4)(3,4)
+list（itertools.product(nums,repeat=2)
+(2,2) (2,3)
+
+from itertools import permutations, product
+for perm in permutations(nums):
+        for ops in product(['+', '-'], repeat=3):
+            expression = f"{perm[0]} {ops[0]} {perm[1]} {ops[1]} {perm[2]} {ops[2]} {perm[3]}"
+            try:
+                if eval(expression) == 24:  
+                    return True
+            except ZeroDivisionError:
+                continue 
+return False
+
+全排列
+import itertools
+n = int(input())
+perm = list(itertools.permutations(range(1,n+1)))
+for i in perm:
+    print(*i)
+
+# n=int(input())
+# while n!=1:
+#     if n%2!=0:
+#         print("{}*3+1={}".format(n,n*3+1))
+#         n=n*3+1
+
+# l=list("".join(t[2:]))
+
+# if list(reversed(l))==l:
+
+from datetime import datetime, timedelta
+date = input()
+add = int(input())
+date1 = datetime.strptime(date,"%Y-%m-%d")
+new = date1 + timedelta(days=add)
+print(new.strftime("%Y-%m-%d"))
+
+# def euler_sieve(n):
+#     is_prime = [True] * (n + 1)
+#     is_prime[0] = is_prime[1] = False
+#     primes = []
+#     for i in range(2, n + 1):
+#         if is_prime[i]:
+#             primes.append(i)
+#         for p in primes:
+#             if i * p > n:
+#                 break
+#             is_prime[i * p] = False
+#             if i % p == 0:
+#                 break
+#     return is_prime
+
+# s = euler_sieve(1000000)
+
+l.sort(key=lambda x: x[2], reverse=True)
+l1=sorted(l,key=lambda x:x[0],reverse=True)
+# print(f"{re:.1f}")
+
+DP
+# s = input()
+# n = int(input())
+# pre = [0] * len(s)
+# for i in range(1, len(s)):
+#     pre[i] = pre[i - 1] + (1 if s[i - 1] == s[i] else 0)
+# for _ in range(n):
+#     a, b = map(int, input().split())
+#     result=0
+#     count = pre[b - 1] - pre[a - 1]
+#     result+=count
+#     print(result)
+
+def coin_change(n, m, coins):
+    dp = [float('inf')] * (m + 1)
+    dp[0] = 0
+    for coin in coins:
+        for amount in range(coin, m + 1):
+            dp[amount] = min(dp[amount], dp[amount - coin] + 1)
+    return dp[m] if dp[m] != float('inf') else -1
+
+ 
+
+# 双指针问题
+# n = int(input())
+# boys_skills = list(map(int, input().split()))
+# boys_skills.sort()
+# m = int(input())
+# girls_skills = list(map(int, input().split()))
+# girls_skills.sort()
+# i, j = 0, 0
+# matches = 0
+# while i < n and j < m:
+#     if abs(boys_skills[i] - girls_skills[j]) <= 1:
+          matches += 1
+#         i += 1
+#         j += 1
+#     elif boys_skills[i] < girls_skills[j]:  # 男孩技巧低于女孩
+#         i += 1
+#     else:
+#         j += 1
+# print(matches)
+
+cubes = {i: i**3 for i in range(2, N + 1)}
+    for a in range(2, N + 1):
+        a_cubed = cubes[a]
+        for b in range(2, N + 1):
+            if b > a:
+                break
+            b_cubed = cubes[b]
+ for a, b, c, d in results:
+    print(f"Cube = {a}, Triple = ({b},{c},{d})")
+
+l = list(map(int, input().split()))
+count_dict = Counter(l)
+print(max(count_dict.values()))
+from collections import Counter
+counts = Counter(['a', 'b', 'a', 'c', 'b', 'a'])
+# counts 将变为 Counter({'a': 3, 'b': 2, 'c': 1})
+
+s="12390123"
+re=s.replace("2","")
+num1 = num1.lstrip('0')
+
+for row in result:
+    print(" ".join(map(str, row)))
+
+import bisect
+a = [1, 2, 4, 4, 5]
+index = bisect.bisect_left(a, 4)  #返回 2，因为 4 第一次出现的位置是索引 2
+2. bisect.bisect_right(a, x, lo=0, hi=len(a))
+功能：在列表 a 中查找值 x 应该插入的位置，同时返回第一个大于 x 的位置。
+index = bisect.bisect_right(a, 4)  # 返回 4，因为 4 的右侧插入位置是索引 4
+l2=[(l1[i],i+1) for i in range(n)]
+l2.sort(key=lambda x:x[0])
+b=f"{a/n:.2f}"
+
+import math
+no=0
+while True:
+    l=[]
+    no+=1
+    n,d=map(int,input().split())
+    c = 0
+    if n==0 and d==0:
+        break
+    for i in range(n):
+         x,y=map(int,input().split())
+         if abs(y) > d:
+             c = -1
+         else:
+             dl=math.sqrt(d*d-y*y)
+             l.append((x-dl,x+dl))
+    l.sort(key=lambda x:x[0])
+    if c==-1:
+        print(f"Case {no}: {c}")
+        input()
+    else:
+        p=-float('inf')
+        for l,r in l:
+            if l>p:
+                c+=1
+                p=r
+            else:
+                p=min(p,r)
+        print(f"Case {no}: {c}")
+        input()
+
+def hanoi(n, source, target, mid):
+    if n == 1:
+        print(f"{source}->{target}")
+    else:
+        # 1. 将 n-1 个盘子从源柱子移动到辅助柱子
+        hanoi(n-1, source, mid, target)
+        # 2. 将第 n 个盘子从源柱子移动到目标柱子
+        print(f"{source}->{target}")
+        # 3. 将 n-1 个盘子从辅助柱子移动到目标柱子
+        hanoi(n-1, mid, target, source)
+n = int(input())
+hanoi(n, 'A', 'C', 'B')
+
+from collections import defaultdict
+n=int(input())
+for i in range(n):
+     re="alive"
+     n,m,b=map(int,input().split())
+     a=defaultdict(list)
+     for i in range(n):
+        x,y=map(int,input().split())
+        a[x].append(y)
+     for i in sorted(a):
+        if m>=len(a[i]):
+            b-=sum(a[i])
+        else:
+            a[i].sort(reverse=True)
+            b-=sum(a[i][:m])
+        if b<=0:
+            re=i
+            break
+     print(re)
+
+DFS：
+def dfs(matrix, visited, i, j, n, m):
+    directions = [(-1, -1), (-1, 0), (-1, 1), (0, -1), (0, 1), (1, -1), (1, 0), (1, 1)]
+    area = 1
+    visited[i][j] = True
+    for dx, dy in directions:
+        ni, nj = i + dx, j + dy
+        if 0 <= ni < n and 0 <= nj < m and not visited[ni][nj] and matrix[ni][nj] == 'W':
+            area += dfs(matrix, visited, ni, nj, n, m)
+    return area
+
+def max_connected_component(matrix, n, m):
+    visited = [[False] * m for _ in range(n)]
+    max_area = 0
+    for i in range(n):
+        for j in range(m):
+            if matrix[i][j] == 'W' and not visited[i][j]:
+                area = dfs(matrix, visited, i, j, n, m)
+                max_area = max(max_area, area)
+    return max_area
+
+T = int(input())
+for _ in range(T):
+    N, M = map(int, input().split())
+    matrix = [input().strip() for _ in range(N)]
+    result = max_connected_component(matrix, N, M)
+    print(result)
+BFS: 
+from collections import deque
+
+def bfs(matrix, m, n):
+    directions = [(-1, 0), (0, -1), (1, 0), (0, 1)]
+    queue = deque([(0, 0, 0)])
+    visited = [[False] * n for _ in range(m)]
+    visited[0][0] = True
+    while queue:
+        i, j, steps = queue.popleft()
+        if matrix[i][j] == 1:
+            return steps
+        for dx, dy in directions:
+            ni, nj = i + dx, j + dy
+            if 0 <= ni < m and 0 <= nj < n and not visited[ni][nj] and matrix[ni][nj] != 2:
+                visited[ni][nj] = True
+                queue.append((ni, nj, steps + 1))
+    return "NO"
+
+m, n = map(int, input().split())
+matrix = [list(map(int, input().split())) for _ in range(m)]
+result = bfs(matrix, m, n)
+print(result)
+
+DFS:
+def dfs(x, y, n, m, visited, steps):
+    if steps == n * m:
+        return 1
+    visited[x][y] = True
+    c = 0
+    directions = [
+        (2, 1), (2, -1), (-2, 1), (-2, -1),
+        (1, 2), (1, -2), (-1, 2), (-1, -2)
+    ]
+    for dx, dy in directions:
+        x1, y1 = x + dx, y + dy
+        if 0 <= x1 < n and 0 <= y1 < m and not visited[x1][y1]:
+            c += dfs(x1, y1, n, m, visited, steps + 1)
+    visited[x][y] = False
+    return c
+
+def count(n, m, x, y):
+    visited = [[False] * m for _ in range(n)]
+    return dfs(x, y, n, m, visited, 1)
+
+n=int(input())
+dp = [0] * (n + 3)
+dp[1] = 1
+dp[2] = 2
+for i in range(3, n + 1):
+    dp[i]=dp[i-1]+dp[i-2]
+print(dp[n])
+
+n=int(input())
+dp = [0] * (n+1)
+dp[0] = 1
+for i in range(1, n+1):
+    for j in range(i):
+        dp[i]+=dp[j]
+print(dp[n])
+
+23A
+def euler_sieve(n):
+    is_prime = [True] * (n + 1)
+    is_prime[0] = is_prime[1] = False
+    for i in range(2, int(n**0.5) + 1):
+        if is_prime[i]:
+            for j in range(i * i, n + 1, i):
+                is_prime[j] = False
+    return is_prime
+
+s = euler_sieve(10000)
+
+def judge(n):
+    if n < 2:
+        return False
+    root = int(n**0.5)
+    return s[root] if root * root == n else False
+
+m, n = map(int, input().split())
+results = []
+
+for i in range(m):
+    num = list(map(int, input().split()))
+    mid = sum(j for j in num if judge(j))
+    if mid == 0:
+        results.append(0)
+    else:
+        results.append(f"{mid / len(num):.2f}")
+
+23C
+（100，200）
+pairs = [i[1:-1] for i in input().split()]
+d = [ sum(map(int,i.split(','))) for i in pairs]
+rate=[d[i]/p[i] for i in range(n)]
+
+23D 三元数 双指针 排序
+def three_sum_count(nums):
+    nums.sort()
+    n = len(nums)
+    count = 0
+    for i in range(n):
+        if i > 0 and nums[i] == nums[i - 1]:
+            continue
+        left, right = i + 1, n - 1
+        while left < right:
+            total = nums[i] + nums[left] + nums[right]
+            if total < 0:
+                left += 1
+            elif total > 0:
+                right -= 1
+            else:
+                count += 1
+                while left < right and nums[left] == nums[left + 1]:
+                    left += 1
+                while left < right and nums[right] == nums[right - 1]:
+                    right -= 1
+                left += 1
+                right -= 1
+    return count
+
+def threeSum(nums):
+    nums.sort()
+    res = set()
+    for i in range(len(nums) - 2):
+        if i > 0 and nums[i] == nums[i - 1]:
+            continue
+        d = {}
+        for x in nums[i + 1:]:
+            if x not in d:
+                d[-nums[i] - x] = 1
+            else:
+                res.add((nums[i], -nums[i] - x, x))
+    return len(res)
+
+22A
+s=bin(int(input()))
+s1=s[2:]
+if s1==s1[::-1]:
+    print("Yes")
+else:
+    print("No")
+
+22C 洋葱
+# from math import ceil
+# n = int(input())
+# matrix=[list(map(int,input().split())) for i in range(n)]
+# re = [0] * ceil(n/2)
+# for i in range(n):
+#     for j in range(n):
+#         re[min(i, j, n-1-i, n-1-j)] += matrix[i][j]
+# print(max(re))
+
+21D 矩阵运算
+n,m1,m2=map(int,input().split())
+matrix1=[[0]*n for i in range(n)]
+for i in range(m1):
+    a,b,c=map(int,input().split())
+    matrix1[a][b]=c
+C = [[0] * n for _ in range(n)]
+for i in range(n):
+    for j in range(n):
+        for k in range(n):
+            C[i][j] += matrix1[i][k] * matrix2[k][j]
+for i in range(n):
+    for j in range(n):
+        if C[i][j]!=0:
+            print(i,j,C[i][j])
+
+12月考C
+a = list(map(int, input().split(',')))
+dp1 = [0] * len(a);
+dp2 = [0] * len(a)
+dp1[0] = a[0];
+dp2[0] = a[0]
+for i in range(1, len(a)):
+    dp1[i] = max(dp1[i - 1] + a[i], a[i])
+    dp2[i] = max(dp1[i - 1], dp2[i - 1] + a[i], a[i])
+print(max(dp2))
+
+滑雪 DFS+DP
+def long(height_map,R,C):
+    dp = [[-1] * C for _ in range(R)]
+    directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]
+    def dfs(x, y):
+        if dp[x][y] != -1:
+            return dp[x][y]
+        m = 1
+        for dx, dy in directions:
+            nx, ny = x + dx, y + dy
+            if 0 <= nx < R and 0 <= ny < C and height_map[nx][ny] < height_map[x][y]:
+                m = max(m, 1 + dfs(nx, ny))
+        dp[x][y] = m
+        return m
+    max_len = 0
+    for i in range(R):
+        for j in range(C):
+            max_len = max(max_len, dfs(i, j))
+    return max_len
+
+积木
+from itertools import permutations
+cube = [input() for _ in range(4)]
+def check(word):
+    for perm in permutations(cube, len(word)):
+        for i, s in enumerate(perm):
+            if word[i] not in s:
+                break
+        else:
+            return 'YES'
+    return 'NO'
+4*3*2=24个（1，2，3，4）（1，2，4，3）…
+
+def dfs(dep, x, s, blocks, used):
+    if dep == len(s):
+        return len(s) == x
+    for i in range(4):
+        if used[i]:
+            continue
+        if s[x] in blocks[i]:
+            used[i] = True
+            if dfs(dep + 1, x + 1, s, blocks, used):
+                return True
+            used[i] = False
+    return False
+
+鞍点
+mid=[list(map(int,input().split())) for i in range(5)]
+judge=False
+for i in range(5):
+    c=0
+    for j in range(5):
+        if max(mid[i])<mid[j][mid[i].index(max(mid[i]))]:
+            c+=1
+        if c==4:
+            judge=True
+            print(i+1,mid[i].index(max(mid[i]))+1,max(mid[i]))
+if judge==False:
+    print("not found")
+
+最高次幂
+s=str(input())
+l=list(s.split("+"))
+num=[]
+for i in l:
+    for h in range(len(i)):
+        if i[h]=="^" and i[0]!="0":
+            num.append(int(i[h+1:]))
+print(f"n^{max(num)}")
+
+双十一（字典＋分割）
+from collections import defaultdict
+n,s=map(int,input().split())
+a=defaultdict(list)
+p=0
+l=[]
+for i in range(n):
+    x,y=map(int,input().split())
+    p+=y
+    a[x].append(y)
+for i in range(s):
+    k=list(input().split("-"))
+    l.append((int(k[0]),int(k[1])))
+p=p-p//200*30
+for i in range(s):
+    if sum(a[i+1])>=l[i][0]:
+        p-=l[i][1]
+print(p)
+
+生日相同
+birthday_list = [[[] for j in range(32)] for i in range(13)]
+for _ in range(int(input())):
+    student_id,m,d = input().split()
+    m = int(m); d = int(d)
+    birthday_list[m][d].append(student_id)
+for month in range(1,13):
+    for day in range(1,32):
+        if len(birthday_list[month][day]) > 1:
+            print(month, day, *birthday_list[month][day])
+三维数组
+three_d_array = defaultdict(lambda: defaultdict(lambda: defaultdict(int)))
+去重且按序
+from collections import OrderedDict
+ordered_set = list(OrderedDict.fromkeys([3, 1, 2, 3, 2]))
+print(ordered_set)  # 输出: [3, 1, 2]
+
+重复事件
+def max_concurrent_connections(test_cases):
+    results = []
+    for _ in range(test_cases):
+        n = int(input())
+        events = []
+        for __ in range(n):
+            start, end = map(int, input().split())
+            events.append((start, 1))
+            events.append((end, -1))
+        events.sort(key=lambda x: (x[0], x[1]))
+        current_connections = 0
+        max_connections = 0
+        for event in events:
+            current_connections += event[1]
+            max_connections = max(max_connections, current_connections)
+        results.append(max_connections)
+    return results
+
+t=int(input())
+while t>0:
+    t-=1
+    n=int(input())
+    a=[];b=[]
+    for i in range(n):
+        x,y=input().split()
+        a.append(int(x))
+        b.append(int(y))
+    ans = 0
+    for i in range(n):
+        cnt=0
+        for j in range(n):
+            if a[i]>=a[j] and a[i]<b[j]:
+                cnt+=1
+        ans = max(ans, cnt)
+    print(ans)
+
+string.upper/swapcase/lower()
+
+洋葱 旋转矩阵 ASCII
+n = int(input())
+s = [[-1] * (n + 2)]
+mx = s + [[-1] + [int(x) for x in input().split()] + [-1] for _ in range(n)] + s
+row = 1
+col = 1
+dirL = [[1, 0], [0, 1], [-1, 0], [0, -1]]
+N = 0
+drow, dcol = dirL[0]
+for _ in range(1, n * n + 1):
+    if mx[row][col] != 0:
+        print(chr(mx[row][col]), end='')
+        mx[row][col] = -1
+    if mx[row + drow][col + dcol] == -1:
+        N += 1
+        drow, dcol = dirL[N % 4]
+    row += drow
+    col += dcol
+
+背包
+输入
+第一行两个整数 T,n。 第 2 行到第 n+1 行，每行两个整数 ti,wi。
+输出
+如果不存在，输出-1。如果存，输出一个整数，表示训练一个月后的最大增肌量。
+样例输入6 4  2 1  4 7  3 5  3 5 out 10
+t,n=map(int,input().split())
+dp=[0]+[-1]*(t+1)
+for i in range(n):
+    k,w=map(int,input().split())
+    for j in range(t,k-1,-1):
+        if dp[j-k]!=-1:
+            dp[j]=max(dp[j-k]+w,dp[j])
+print(dp[t])
+
+卷积
+m, n, p, q = map(int, input().split())
+yuan = [[int(x) for x in input().split()] for _ in range(m)]
+juan = [[int(x) for x in input().split()] for _ in range(p)]
+answer = [[0] * (n - q + 1) for _ in range(m - p + 1)]
+def j(x, y):
+    s = 0
+    for i in range(p):
+        for j in range(q):
+            s += juan[i][j] * yuan[i + x][j + y]
+    return s
+for a in range(m - p + 1):
+    for b in range(n - q + 1):
+        answer[a][b] = str(j(a, b))
+for i in range(m - p + 1):
+print(' '.join(answer[i]))
+
+（6）从列表中删除元素： 
+法一：my_list = [1, 2, 3, 4, 2, 5] my_list.remove(2) # 删除第一个 2 法二：my_list = [1, 2, 3, 4, 5] removed_element = my_list.pop(2) # 删除索引为 2 的元素 (即 3)
+
+#遍历字典： 
+#遍历键 for key in my_dict:#遍历值 for value in my_dict.values():
+# 遍历键值对 for key, value in my_dict.items(): print(f"{key}: {value}") 
+#字典推导式举例：numbers = [1, 2, 3, 4, 5] squared_dict = {n: n**2 for n in numbers} print(squared_dict)
+#字典排序： sorted_dict = dict(sorted(my_dict.items(), key=lambda x: x[1], reverse=True))注意sorted得到的是一个列表! 
+#如果想要降序并转化为字典格式如下：sorted_dict = dict(sorted(my_dict.items(), key=lambda x: x[1], reverse=True))
+与map结合： # 对列表中的每个元素进行平方操作 squared_numbers = list(map(lambda x: x ** 2, numbers))
+ 
+# 获取字符的 ASCII 码——ord() 
+ascii_value = ord('A') print(ascii_value) # 输出：65 
+# 获取 ASCII 码对应的字符——chr() char = chr(65) print(char) # 输出：A
+
+基本语法：enumerate(iterable, start=0) 
+iterable：这是想要遍历的可迭代对象（如列表、元组、字符串等）
+start：可选，指定索引从哪里开始，默认从 0 开始
+返回元组，每个元组由两个元素组成：第一个是索引，第二个是对应的值。 
+举例1：单纯返回索引和元素 fruits = ['apple', 'banana', 'cherry'] 
+for index, fruit in enumerate(fruits):   print(f"Index: {index}, Fruit: {fruit}") 
+举例2：与if搭配实现查找： fruits = ['apple', 'banana', 'cherry', 'orange'] for index, fruit in enumerate(fruits):   if 'a' in fruit:  print(f"Found fruit with 'a' at index {index}: {fruit}")
+
+类似思路：最大摆动子序列 
+def max_len(n,nums): 
+if n==1: return 1 
+else: up=1 down=1 for i in range(1,n): if nums[i]>nums[i-1]: up=down+1 elif nums[i]<nums[i-1]:down=up+1 return max(up,down)
+
+def max_intercepted_missiles(k, heights): 
+dp = [1] * k 
+for i in range(1, k): 
+for j in range(i): 
+if heights[i] <= heights[j]: dp[i] = max(dp[i], dp[j] + 1)
+
+#### 十、区间问题
+(1)区间合并后区间:
+intervals.sort(key=lambda x: x[0])  # 左端点从小到大排序
+ans = []
+for interval in intervals:
+    if ans and interval[0] <= ans[-1][1]:  # 左端点可以连上最后的区间,维护最后区间末端为两者最大值
+        ans[-1][1] = max(ans[-1][1], interval[1])
+    else:  # 空ans,加入第一个区间/未能连上,加入新的合并区间
+        ans.append(interval)
+
+(2)选取数量最多的不相交区间集(认为点接触不算重叠) 
+intervals.sort(key = lambda x :x[1])  # 右端从小到大排序
+count = 1; end = intervals[0][1]  # 选第一个区间,初始化
+for i in range(1, len(intervals)):
+  if intervals[i][0] >= end:  # 若与之前没有交集
+    end = intervals[i][1]; count += 1
+print(count)
+
+(3)覆盖目标区间的最少区间选取数目
+clips.sort(key = lambda x:x[0])  # 左端点从小到大排序
+start, end = 0, time
+ans = 0; i = 0  # 初始化答案和计数器
+while i < len(clips):
+    maxR = -1  # 维护:满足能覆盖初始值的区间的右侧最大时间
+    while i < len(clips) and clips[i][0] <= start:
+        maxR = max(maxR, clips[i][1])
+        i += 1
+    if maxR < start:  # 未找到符合要求的区间
+        return -1
+    ans += 1  # 找到了,ans加1
+    if maxR >= end:     # 达若到结尾,返回ans
+        return ans
+    start = maxR  # 未达到结尾,将目标区间开头设定为maxR,继续第一层while
+return -1  # 若i超出列表长度,找不到
+
+(4)区间分组,每组内不相交,求使组数最小的分组方式(greedy)
+import heapq
+def minmumNumberOfHost(self, n, startEnd):
+    startEnd.sort()
+    min_heap = []  # 创建最小堆,维护所有组的末端并快速找到最小末端
+    for interval in startEnd:
+        start, end = interval
+        if not min_heap or min_heap[0] > start: 
+            heappush(min_heap, end)
+        else:  # 弹出堆顶,压入当前结束时间
+            heappop(min_heap)
+            heappush(min_heap, end)
+    return len(min_heap)    # 最终堆中的元素个数就是组数
+
+(5)是否存在不重叠区间:
+import heapq
+from collections import defaultdict
+q = int(input())
+left_set = defaultdict(int); right_set = defaultdict(int); min_r = []; max_l = []
+for _ in range(q):
+    operate = input().split()
+    l, r = int(operate[1]), int(operate[2])
+    if operate[0] == "+":
+        left_set[l] += 1; right_set[r] += 1
+        heapq.heappush(max_l, -l); heapq.heappush(min_r, r)
+    else:
+        left_set[l] -= 1; right_set[r] -= 1
+    # 清除堆中无效边界
+    while max_l and left_set[-max_l[0]] <= 0:heapq.heappop(max_l)
+    while min_r and right_set[min_r[0]] <= 0:heapq.heappop(min_r)
+    # 贪心策略:若最小右边界小于最大左边界,存在不重叠的一组区间
+    if max_l and min_r and min_r[0] < -max_l[0]:print("YES")
+    else:print("NO")
+
+#### 二、dp
+**0-1背包**:只有一件,选择只有拿/不拿(重点:初始化,转移方程,提取结果)
+def knapsack_2d(weights, values, W):
+    n = len(weights)
+    dp = [[0] * (W + 1) for _ in range(n + 1)]
+    for i in range(1, n + 1):
+        for j in range(W + 1):
+            if j >= weights[i - 1]: #第i个物品能装进,判断不选/选物品
+                dp[i][j] = max(dp[i - 1][j], dp[i - 1][j - weights[i - 1]] + values[i - 1])
+            else: dp[i][j] = dp[i - 1][j]
+    return dp[n][W]
+```
+def knapsack_1d(weights, values, W):  # 一维视为二维的滚动数组实现
+    n = len(weights)
+    dp = [0] * (W + 1)  # 初始化 dp 数组，容量从 0 到 W
+    for i in range(n):  # 遍历每件物品
+        for j in range(W, weights[i] - 1, -1):  # 倒序遍历背包容量(保证每件物品只能选一次)
+            dp[j] = max(dp[j], dp[j - weights[i]] + values[i])
+    return dp[W]
+
+**完全背包问题** 允许在不超容量的前提下无限次选取
+def knapsack_complete(weights, values, capacity):
+    dp = [0] * (capacity + 1)  #dp[j]为当背包容量为j时,容纳的最大价值
+    dp[0] = 0
+    for i in range(len(weights)):  # 遍历所有物品
+        for j in range(weights[i], capacity + 1):  # 从当前物品的重量开始，计算每个容量的最大价值
+            dp[j] = max(dp[j], dp[j - weights[i]] + values[i])
+    return dp[capacity]
+
+必须装满的类型:
+def knapsack_complete_fill(weights, values, capacity):
+    dp = [-float('inf')] * (capacity + 1) 
+    dp[0] = 0  # 容量为 0 时，价值为 0
+    for i in range(len(weights)):  # 遍历所有物品
+        for w in range(weights[i], capacity + 1):  # 遍历所有容量，从 weights[i] 开始 
+            dp[w] = max(dp[w], dp[w - weights[i]] + values[i])
+    # 如果 dp[capacity] 仍为 -inf，说明无法填满背包
+    return dp[capacity] if dp[capacity] != -float('inf') else 0
+
+`list[::1]`得到反转后的`list`
+`list[a:b+1]`返回从索引值为`a`到`b-1`的列表型结果,无法应用原地算法,正确做法:list[a:b+1] = reversed(list[a:b+1])
+
+### dp
+#### 最长公共子序列
+for i in range(len(A)):
+    for j in range(len(B)):
+        if A[i] == B[j]:
+            dp[i][j] = dp[i-1][j-1]+1
+        else:
+            dp[i][j] = max(dp[i-1][j],dp[i][j-1])
+#### 最长单调子序列
+dp = [1]*n
+for i in range(1,n):
+    for j in range(i):
+        if A[j]<A[i]:
+            dp[i] = max(dp[i],dp[j]+1)
+ans = sum(dp)
+
+### 字符串
+str.title()首字母大写（每个单词）  str.lower()/upper()每个字母小/大写  str.strip()去除空格，有rstrip/lstrip去掉尾部/头部的空格
+ord() chr() 可以完成字符与ASCII码的转化
+str.find()查找指定字符，注意如果有的话会返回第一个找到的，如果没有会返回-1
+
+from collections import defaultdict
+m,c=map(int,input().split())
+l=[]
+for i in range(m):
+    n,s,d=map(int,input().split())
+    l.append((n,s,d))
+l.sort(key=lambda x:x[1])
+a=defaultdict(list)
+for i in l:
+    for h in range(i[2]):
+        a[h+i[1]].append(i[0])
+judge=True
+for i in a:
+    if sum(a[i])>c:
+
+def max_profit(prices):
+    initial_money = 100.0  # 初始金额
+    min_price = float('inf')  # 初始最小价格
+    max_money = initial_money  # 记录最大可得金额
+    for price in prices:
+        # 更新最小买入价格
+        if price < min_price:
+            min_price = price
+        # 如果当前价格大于最小买入价格，可以进行计算
+        if price > min_price:
+            # 计算出售后能获得的最大金额
+            current_money = (initial_money / min_price) * price
+            max_money = max(max_money, current_money)
+    return max_money
+
+N = int(input().strip())
+prices = list(map(float, input().strip().split()))
+result = max_profit(prices)
+print(f"{result:.2f}")
+
+
